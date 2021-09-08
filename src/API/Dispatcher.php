@@ -28,7 +28,7 @@ class Dispatcher
      *
      * @return Dispatcher
      */
-    public function addApi($apis): Dispatcher
+    public function addApi($apis): self
     {
         if (!is_array($apis)) {
             $apis = [$apis];

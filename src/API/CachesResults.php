@@ -19,6 +19,7 @@ trait CachesResults
     {
         $this->shouldCache = true;
         $this->cacheMinutes = $minutes;
+
         return $this;
     }
 
