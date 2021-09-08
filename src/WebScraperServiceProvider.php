@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesAusten\WebScraper\Scraper;
+namespace JamesAusten\WebScraper;
 
 use Illuminate\Support\ServiceProvider;
 
