@@ -27,7 +27,7 @@ class CookieHandler
 
         $this->config = config('web-scraper.cookies');
 
-        if (!is_null($url)) {
+        if ($url !== null) {
             $this->setFilePath();
         }
     }
@@ -131,6 +131,7 @@ class CookieHandler
         $this->url = $url;
         $this->setFilePath();
         $this->read();
+
         return $this;
     }
 
@@ -144,6 +145,7 @@ class CookieHandler
         $this->username = $username;
         $this->setFilePath();
         $this->read();
+
         return $this;
     }
 }

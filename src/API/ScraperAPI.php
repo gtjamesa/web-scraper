@@ -91,6 +91,7 @@ abstract class ScraperAPI
     public function setApiUrl($apiUrl)
     {
         $this->apiUrl = $this->attachUrlParams($apiUrl);
+
         return $this;
     }
 
@@ -101,9 +102,10 @@ abstract class ScraperAPI
      *
      * @return ScraperAPI
      */
-    public function params(array $params): ScraperAPI
+    public function params(array $params): self
     {
         $this->urlParams = array_merge($this->urlParams, $params);
+
         return $this;
     }
 
@@ -139,16 +141,16 @@ abstract class ScraperAPI
      */
     protected function getCsrfToken(string $uri, ?array $filter = null)
     {
-        if (is_null($filter)) {
-            if (is_null($this->csrfTokenFilter['filter'])) {
+        if ($filter === null) {
+            if ($this->csrfTokenFilter['filter'] === null) {
                 $this->csrfTokenFilter = $this->webScraper->getScraper()->getCsrfTokenFilter();
             }
 
             $filter = $this->csrfTokenFilter;
         }
 
-        if (is_null($filter['filter'])) {
-            throw new \Exception("CSRF token filter not set");
+        if ($filter['filter'] === null) {
+            throw new \Exception('CSRF token filter not set');
         }
 
         $response = $this->webScraper->request('GET', $uri);

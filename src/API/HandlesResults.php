@@ -2,8 +2,8 @@
 
 namespace JamesAusten\WebScraper\API;
 
-use Illuminate\Support\Facades\Cache;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Cache;
 use JamesAusten\WebScraper\Scraper\Scraper;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -33,7 +33,7 @@ trait HandlesResults
      */
     public function request($apiUrl = null)
     {
-        if (!is_null($apiUrl)) {
+        if ($apiUrl !== null) {
             $this->setApiUrl($apiUrl);
         }
 
@@ -66,12 +66,13 @@ trait HandlesResults
 
             if ($this->cacheKey && Cache::has($this->cacheKey)) {
                 $this->setResults(Cache::get($this->cacheKey));
+
                 return [];
             }
         }
 
         // Attach CSRF token to headers
-        if (!is_null($this->csrfTokenFilter['filter']) && $this->csrfTokenFilter['type'] == Scraper::CSRF_TYPE_HEADER) {
+        if ($this->csrfTokenFilter['filter'] !== null && $this->csrfTokenFilter['type'] == Scraper::CSRF_TYPE_HEADER) {
             $options = array_merge($options, [
                 'headers' => [
                     $this->csrfTokenFilter['name'] => $this->csrfToken,
@@ -103,6 +104,7 @@ trait HandlesResults
     public function incCount(int $count): ScraperAPI
     {
         $this->count += $count;
+
         return $this;
     }
 
@@ -114,6 +116,7 @@ trait HandlesResults
     public function setResults(array $results): ScraperAPI
     {
         $this->results = array_merge($this->results, $results);
+
         return $this;
     }
 

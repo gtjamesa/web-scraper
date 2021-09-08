@@ -110,6 +110,7 @@ class Scraper
     public function setUserAgent($userAgent)
     {
         $this->userAgent = $userAgent;
+
         return $this;
     }
 
@@ -164,11 +165,11 @@ class Scraper
      */
     public function getCsrfToken($csrfTokenFilter = null, Crawler $parser = null)
     {
-        if (!is_null($csrfTokenFilter)) {
+        if ($csrfTokenFilter !== null) {
             $this->setCsrfTokenFilter($csrfTokenFilter);
         }
 
-        if (is_null($parser)) {
+        if ($parser === null) {
             $parser = $this->parser;
         }
 
@@ -177,6 +178,7 @@ class Scraper
 
         if ($this->csrfTokenFilter['attr'] && $node) {
             $this->csrfToken = $node->getAttribute($this->csrfTokenFilter['attr']);
+
             return $this->csrfToken;
         }
 
@@ -248,6 +250,7 @@ class Scraper
 
         if (!$options['authTest']['url']) {
             $this->setIsLoggedIn(false);
+
             return false;
         }
 
@@ -303,9 +306,10 @@ class Scraper
      *
      * @return Scraper
      */
-    public function setIsLoggedIn(bool $isLoggedIn): Scraper
+    public function setIsLoggedIn(bool $isLoggedIn): self
     {
         $this->isLoggedIn = $isLoggedIn;
+
         return $this;
     }
 }

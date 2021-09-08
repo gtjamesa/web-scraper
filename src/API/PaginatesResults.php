@@ -2,8 +2,8 @@
 
 namespace JamesAusten\WebScraper\API;
 
-use Illuminate\Support\Facades\Cache;
 use Closure;
+use Illuminate\Support\Facades\Cache;
 
 trait PaginatesResults
 {
@@ -40,6 +40,7 @@ trait PaginatesResults
 
             if ($this->shouldCache() && $this->cacheKey && Cache::has($this->cacheKey)) {
                 $this->shouldPaginate = false;
+
                 return $this->getResults();
             }
 
@@ -72,6 +73,7 @@ trait PaginatesResults
     public function paginateCallback(Closure $callback)
     {
         $this->callback = $callback;
+
         return $this;
     }
 
