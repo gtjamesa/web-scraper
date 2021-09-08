@@ -1,0 +1,49 @@
+{
+    "name": "gtjamesa/web-scraper",
+    "description": "Web Scraper",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Austen",
+            "email": "aus.james@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "gtjamesa/php-standards": "^1.0",
+        "orchestra/testbench": "^5.0|^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JamesAusten\\WebScraper\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JamesAusten\\WebScraper\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JamesAusten\\WebScraper\\WebScraperServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
